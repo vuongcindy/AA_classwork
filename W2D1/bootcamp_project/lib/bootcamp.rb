@@ -55,6 +55,39 @@ class Bootcamp
     end
 
     # Part 2
+    def student_to_teacher_ratio
+      return @students.length / @teachers.length
+    end
+
+    def add_grade(student, grade)
+      if enrolled?(student)
+        @grades[student] << grade
+        return true
+      else
+        return false
+      end
+    end
+
+    def num_grades(student)
+      return @grades[student].length
+    end
+
+    def average_grade(student)
+      grade_points = 0
+      if num_grades(student) == 0 || !enrolled?(student) 
+        return nil
+      end
+      # @grades hash is {student_name: grades}
+      @grades[student].each do |each_grade|
+        # debugger
+        grade_points += each_grade
+      end
+      p grade_points
+      p num_grades(student)
+      p grade_points / num_grades(student)
+      p "---"
+      return grade_points / num_grades(student)
+    end
     
   end
 end
