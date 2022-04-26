@@ -1,10 +1,9 @@
 require 'byebug'
 class Hangman
-  DICTIONARY = ["cat", "dog", "bootcamp", "pizza"] # all caps is class const
+  DICTIONARY = ["cat", "dog", "bootcamp", "pizza"] 
 
-    # @@ class var
   # PART 1
-  def self.random_word # class method
+  def self.random_word 
     DICTIONARY.sample
   end
 
@@ -35,7 +34,7 @@ class Hangman
       end
     end
 
-    def get_matching_indices(c) #arr of @secret_word indicies
+    def get_matching_indices(c) 
       arr = []
       @secret_word.each_char.with_index do |letter, i|
         if c == letter
