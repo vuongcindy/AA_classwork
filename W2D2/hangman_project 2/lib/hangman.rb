@@ -1,3 +1,4 @@
+require 'byebug'
 class Hangman
   DICTIONARY = ["cat", "dog", "bootcamp", "pizza"] # all caps is class const
 
@@ -34,7 +35,7 @@ class Hangman
       end
     end
 
-    def get_matching_indices(c)
+    def get_matching_indices(c) #arr of @secret_word indicies
       arr = []
       @secret_word.each_char.with_index do |letter, i|
         if c == letter
@@ -53,6 +54,54 @@ class Hangman
 
     # PART 2
     def try_guess(c)
-      c.already_attempted?
+      if already_attempted?(c)
+        puts 'that has already been attempted'
+        return false
+      end
+      
+      @attempted_chars << c
+      indices = get_matching_indices(c)
+      
+      if indices.length == 0
+        @remaining_incorrect_guesses -= 1
+      else
+        fill_indices(c, indices)
+      end
+      
+      true
     end
+
+    def ask_user_for_guess
+      puts 'Enter a char:'
+      response = gets.chomp
+      try_guess(response)
+    end
+
+    def win?
+      if @guess_word.join == @secret_word
+        puts 'WIN'
+        return true
+      else
+        return false
+      end
+    end
+
+    def lose?
+      if @remaining_incorrect_guesses == 0
+        puts 'LOSE'
+        return true
+      else
+        return false
+      end
+    end
+
+    def game_over?
+      if win? || lose?
+        puts @secret_word
+        return true
+      else
+        return false
+      end
+    end
+    
 end
