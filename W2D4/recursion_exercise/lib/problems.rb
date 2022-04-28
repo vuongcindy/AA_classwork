@@ -1,7 +1,7 @@
 # Write a method, pow(base, exponent), that takes in two numbers.
 # The method should calculate the base raised to the exponent power.
 # You can assume the exponent is always positive.
-#
+
 # Solve this recursively!
 #
 # Examples:
@@ -12,7 +12,10 @@
 # pow(3, 4) # => 81
 # pow(4, 3) # => 64
 def pow(base, exponent)
-
+    # base case
+    return 1 if exponent == 0
+    
+    base * pow(base, exponent - 1)
 end
 
 
@@ -35,7 +38,10 @@ end
 # lucas_number(5)   # =>    11
 # lucas_number(9)   # =>    76
 def lucas_number(n)
-
+    return 2 if n == 0
+    return 1 if n == 1
+    
+    lucas_number(n - 2) + lucas_number(n - 1)
 end
 
 
@@ -51,7 +57,9 @@ end
 # sum_array([5, 2])         # => 7
 # sum_array([4, 10, -1, 2]) # => 15
 def sum_array(array)
+    return 0 if array.length == 0
 
+    array[0] + sum_array(array.slice(1, array.length))
 end
 
 
@@ -67,7 +75,9 @@ end
 # reverse_string("internet")    # => "tenretni"
 # reverse_string("friends")     # => "sdneirf"
 def reverse_string(str)
+    return "" if str.length == 0
 
+    new_str = reverse_string(str[1..-1]) + str[0]
 end
 
 
@@ -100,5 +110,15 @@ end
 #     2-dimensional array: [['some data']]
 #     3-dimensional array: [[['some data']]]
 def flatten(data)
+    return [data] if !data.is_a?(Array)
 
+    new_arr = []
+    data.each do |ele|
+        if ele.is_a?(Array)
+            new_arr += flatten(ele)
+        else
+            new_arr << ele
+        end
+    end
+    new_arr
 end
