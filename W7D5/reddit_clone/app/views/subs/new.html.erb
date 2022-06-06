@@ -1,0 +1,18 @@
+<a href="<%= user_subs_url %>">
+    <button>Sub Index</button>
+</a>
+
+<h2>Create a new subreddit</h2>
+
+<form action="<%= user_subs_url(current_user.id) %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label>Title:
+        <input type="text" name="subs[title]" value="">
+    </label>
+    <br>
+    <label>Description:
+        <input type="text" name="subs[description]" value="">
+    </label>
+    <br>
+    <input type="submit" value="Create subreddit">
+</form>

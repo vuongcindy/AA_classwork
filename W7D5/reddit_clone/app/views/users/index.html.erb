@@ -1,0 +1,16 @@
+<h1>The users:</h1>
+
+<a href=" <%= new_session_url %>">
+    <button>Login</button>
+</a>
+<br>
+<a href=" <%= new_user_url %>">
+    <button>Sign up</button>
+</a>
+
+
+<ul>
+    <% @users.each do |user|%>
+        <li><%=user.username%></li>
+    <%end%>
+</ul>

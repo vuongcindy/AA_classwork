@@ -1,0 +1,19 @@
+<a href=" <%= subs_url %>">
+    <button>Sub Index</button>
+</a>
+
+<h2>Edit subreddit</h2>
+
+<form action=" <%= edit_user_sub_url %>" method="post">
+    <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %>>
+    <input type="hidden" name="_method" value="patch">
+    <label>Title:
+        <input type="text" name="subs[title]" value="<%= @subs[title] %>">
+    </label>
+    <br>
+    <label>Description:
+        <input type="text" name="subs[description]" value="<%= @subs[description] %>">
+    </label>
+    <br>
+    <input type="submit" value="Edit subreddit">
+</form>
